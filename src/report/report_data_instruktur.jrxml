@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a02d13c5-48da-4b41-86de-419a243475cc">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     tb_instruktur.`id_instruktur` AS tb_instruktur_id_instruktur,
+     tb_instruktur.`nama_instruktur` AS tb_instruktur_nama_instruktur,
+     tb_instruktur.`no_telefon` AS tb_instruktur_no_telefon,
+     tb_instruktur.`jenis_kelamin` AS tb_instruktur_jenis_kelamin,
+     tb_instruktur.`bidang` AS tb_instruktur_bidang,
+     tb_instruktur.`email` AS tb_instruktur_email,
+     tb_instruktur.`tgl_join` AS tb_instruktur_tgl_join
+FROM
+     `tb_instruktur` tb_instruktur]]>
+	</queryString>
+	<field name="tb_instruktur_id_instruktur" class="java.lang.String"/>
+	<field name="tb_instruktur_nama_instruktur" class="java.lang.String"/>
+	<field name="tb_instruktur_no_telefon" class="java.lang.String"/>
+	<field name="tb_instruktur_jenis_kelamin" class="java.lang.String"/>
+	<field name="tb_instruktur_bidang" class="java.lang.String"/>
+	<field name="tb_instruktur_email" class="java.lang.String"/>
+	<field name="tb_instruktur_tgl_join" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="193" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="fa8e9385-fc00-44e0-9d4e-adcf691ecff2" style="Title" x="243" y="0" width="341" height="62"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[MARK'S GYM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="12c5cc37-ec4d-482d-86cc-dcf2ab25d77a" style="SubTitle" x="359" y="62" width="196" height="22"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[GEDONG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d8c723a7-aed5-412b-a201-ebc8a5fb8df3" x="228" y="84" width="383" height="30"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Jl. H. Taiman No. 13 RT/RW 003/009 Kel. Gedong Kec. Pasar Rebo, Jakarta Timur 13760 (samping cahaya gedong residen 1)]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="eb6aadcf-6ebb-4f29-9d74-d061028429dd" x="81" y="0" width="327" height="127"/>
+				<imageExpression><![CDATA["/Users/user/Downloads/mark_gym_logo.jpeg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="55c91a7b-18af-4aea-8a03-e932132dc644" x="228" y="127" width="377" height="38"/>
+				<textElement>
+					<font fontName="Comic Sans MS" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LAPORAN DATA INSTRUKTUR]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="15a148b1-bc9b-48e3-aaa4-6ac45b88ecac" x="243" y="165" width="341" height="1"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement uuid="471e2f3d-7d7e-492d-a991-c77d89b57a92" positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="0179a763-f95f-40dd-8d66-2db3c2a6c1e4" style="Column header" x="0" y="0" width="114" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[ID Instruktur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="757ce46a-2eda-4480-9898-e63bdea794d9" style="Column header" x="114" y="0" width="114" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Nama Instruktur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3aef08d2-4227-4601-a874-3321902e7446" style="Column header" x="228" y="0" width="114" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[No Telepon]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a59b05c7-9bd6-4068-af3f-4aae085f56ab" style="Column header" x="342" y="0" width="114" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Jenis Kelamin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="df38cd61-396d-4e1c-8809-35afc1621e83" style="Column header" x="456" y="0" width="114" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Instruktur Bidang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cfe9b9de-5ac4-497d-8826-37f6199155f4" style="Column header" x="570" y="0" width="114" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Email Instruktur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="72550793-35be-4c52-9e6f-e4a947622af5" style="Column header" x="684" y="0" width="114" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Tanggal Join]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement uuid="2d26bf98-70b5-4043-a42c-0f792b88f12c" style="Row" mode="Opaque" x="0" y="0" width="802" height="15"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="59b3a29d-3f8d-4293-b374-73f6538d645e" style="Detail" x="0" y="0" width="114" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tb_instruktur_id_instruktur}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="20e1d2a2-0b11-4b74-815d-28005fce246b" style="Detail" x="114" y="0" width="114" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tb_instruktur_nama_instruktur}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="34f40035-6364-4c9d-b3cd-d117ff19c887" style="Detail" x="228" y="0" width="114" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tb_instruktur_no_telefon}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="e89186d4-a0d7-41dd-b5d6-0249c6899967" style="Detail" x="342" y="0" width="114" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tb_instruktur_jenis_kelamin}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="f3445294-5980-41e9-8259-fc1151adc039" style="Detail" x="456" y="0" width="114" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tb_instruktur_bidang}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="716b6a72-0618-40a2-bb34-241131e92b48" style="Detail" x="570" y="0" width="114" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tb_instruktur_email}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="ee089322-bee0-4a55-b3e1-17e34cf04449" style="Detail" x="684" y="0" width="114" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tb_instruktur_tgl_join}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement uuid="c99674e7-f072-4276-b573-a6fc92879aef" positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement uuid="74ee9603-783b-46c2-abd4-124b1cbe45b5" mode="Opaque" x="-21" y="1" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF"/>
+				<textField evaluationTime="Report">
+					<reportElement uuid="a2f685ed-f7d0-464a-a60b-f3d2feb8edab" style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="7e6e5039-68bd-46ca-911f-fe5d24ea6508" style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="98a74c2d-c16e-4ff9-859b-116e5a80f1cf" style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

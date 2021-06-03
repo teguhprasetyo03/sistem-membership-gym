@@ -1,17 +1,25 @@
 package Form;
 
 
+import java.io.File;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import koneksi.Koneksi;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -173,8 +181,8 @@ public class Form_Instruktur extends javax.swing.JFrame {
         table_instruktur = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
         txt_cari_karyawan = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btn_cetak = new javax.swing.JButton();
+        btn_clear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -216,7 +224,7 @@ public class Form_Instruktur extends javax.swing.JFrame {
             }
         });
 
-        jLabel12.setText("Jabatan :");
+        jLabel12.setText("Bidang");
 
         jLabel13.setText("Tanggal Join :");
 
@@ -282,6 +290,11 @@ public class Form_Instruktur extends javax.swing.JFrame {
         txt_jenis_kelamin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laki-Laki", "Perempuan", "Transgender/Waria" }));
 
         txt_bidang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Yoga", "Fitness", "Aerobik" }));
+        txt_bidang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_bidangActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -390,17 +403,17 @@ public class Form_Instruktur extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("CETAK");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btn_cetak.setText("CETAK");
+        btn_cetak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btn_cetakActionPerformed(evt);
             }
         });
 
-        jButton6.setText("CLEAR");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btn_clear.setText("CLEAR");
+        btn_clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btn_clearActionPerformed(evt);
             }
         });
 
@@ -424,9 +437,9 @@ public class Form_Instruktur extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(txt_cari_karyawan, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn_cetak, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton6)))
+                                .addComponent(btn_clear)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -447,8 +460,8 @@ public class Form_Instruktur extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton5)
-                            .addComponent(jButton6)))
+                            .addComponent(btn_cetak)
+                            .addComponent(btn_clear)))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
@@ -590,14 +603,32 @@ public class Form_Instruktur extends javax.swing.JFrame {
         
     }//GEN-LAST:event_table_instrukturMouseClicked
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btn_cetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cetakActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+           try {
+             HashMap parameter = new HashMap();
+             Class.forName("com.mysql.jdbc.Driver");
+             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:8889/gms","root","root");
+             File file = new File("src/report/report_data_instruktur.jasper");
+             JasperReport jr = (JasperReport) JRLoader.loadObject(file);
+             JasperPrint jp = JasperFillManager.fillReport(jr, parameter, conn);
+             JasperViewer.viewReport(jp, false);
+             JasperViewer.setDefaultLookAndFeelDecorated(true);
+        } catch (Exception e) {
+           javax.swing.JOptionPane.showMessageDialog(null,
+                   "Data tidak dapat dicetak !!!"+"\n"+ e.getMessage(), "Cetak Data",
+                   javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_cetakActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
         // TODO add your handling code here:
         kosong();
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btn_clearActionPerformed
+
+    private void txt_bidangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_bidangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_bidangActionPerformed
 
     /**
      * @param args the command line arguments
@@ -635,12 +666,12 @@ public class Form_Instruktur extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_cetak;
+    private javax.swing.JButton btn_clear;
     private javax.swing.JButton btn_save;
     private javax.swing.JButton btn_update;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;

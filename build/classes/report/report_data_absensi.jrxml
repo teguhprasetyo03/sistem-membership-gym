@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="210079bf-929f-4014-afe9-28acf25a7850">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     tb_absensi.`id_presensi` AS tb_absensi_id_presensi,
+     tb_absensi.`nama_member` AS tb_absensi_nama_member,
+     tb_absensi.`jenis_kelamin` AS tb_absensi_jenis_kelamin,
+     tb_absensi.`hari_masuk` AS tb_absensi_hari_masuk,
+     tb_absensi.`jam_masuk` AS tb_absensi_jam_masuk,
+     tb_absensi.`tgl_masuk` AS tb_absensi_tgl_masuk
+FROM
+     `tb_absensi` tb_absensi]]>
+	</queryString>
+	<field name="tb_absensi_id_presensi" class="java.lang.String"/>
+	<field name="tb_absensi_nama_member" class="java.lang.String"/>
+	<field name="tb_absensi_jenis_kelamin" class="java.lang.String"/>
+	<field name="tb_absensi_hari_masuk" class="java.lang.String"/>
+	<field name="tb_absensi_jam_masuk" class="java.lang.String"/>
+	<field name="tb_absensi_tgl_masuk" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="207" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="071eac5f-9b7d-4fdc-b8c1-417aad4aa08d" style="Title" x="270" y="0" width="341" height="62"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[MARK'S GYM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bb3246b9-3800-4c5a-b73f-c2d1be2988ac" style="SubTitle" x="336" y="62" width="196" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[GEDONG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e461a0b3-c93f-47be-9a90-023b773aed52" x="250" y="84" width="383" height="42"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Jl. H. Taiman No. 13 RT/RW 003/009 Kel. Gedong Kec. Pasar Rebo, Jakarta Timur 13760 (samping cahaya gedong residen 1)]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="96db9bdb-51d7-4602-aeaa-d73fce1d8bd3" x="99" y="0" width="317" height="136"/>
+				<imageExpression><![CDATA["/Users/user/Downloads/mark_gym_logo.jpeg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="bbf1fdd3-4a15-4781-9170-5742902dd11f" x="229" y="136" width="436" height="39"/>
+				<textElement>
+					<font fontName="Comic Sans MS" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LAPORAN DATA ABSENSI MEMBER]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="04d834da-d832-4603-a7cd-5b5086a0bf57" x="239" y="175" width="408" height="1"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement uuid="79bebde2-0f4b-4e66-b93e-ccdc4605be14" positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="d9e5b852-a8f0-4189-9a12-a476aaf5dc5c" style="Column header" x="0" y="0" width="133" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[ID Presensi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="739add0d-db31-48bb-9274-ad7e9db1ea61" style="Column header" x="133" y="0" width="133" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Nama Member]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="456ba951-9d38-40fd-ab31-18d98621459c" style="Column header" x="266" y="0" width="133" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Jenis Kelamin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c9fd34fd-0bc2-4be7-b2b7-64582065801b" style="Column header" x="399" y="0" width="133" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Hari Masuk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e86c59ea-2721-4039-b4dd-4282ef893e30" style="Column header" x="532" y="0" width="133" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Jam Absen Masuk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e6336c35-2115-4463-b73f-3e6dab330bcf" style="Column header" x="665" y="0" width="133" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Tanggal Absen Masuk]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement uuid="d98c85e7-bfb5-449e-817f-cf53fd828059" style="Row" mode="Opaque" x="0" y="0" width="802" height="15"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="3aa54dd9-fab6-4529-a1e6-cde4e6ee6d59" style="Detail" x="0" y="0" width="133" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tb_absensi_id_presensi}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="c113f1a5-5a4e-4f0d-b459-9a4408c008c7" style="Detail" x="133" y="0" width="133" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tb_absensi_nama_member}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="438fa09e-56e2-4c2d-b39a-61c5065c8b64" style="Detail" x="266" y="0" width="133" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tb_absensi_jenis_kelamin}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="e3be32a3-7d95-4064-b4c1-518b242faeee" style="Detail" x="399" y="0" width="133" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tb_absensi_hari_masuk}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="5d990dfb-d901-44d6-b149-a424ba48d5c6" style="Detail" x="532" y="0" width="133" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tb_absensi_jam_masuk}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="8a148601-1156-4e5d-9255-70309af7e308" style="Detail" x="665" y="0" width="133" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tb_absensi_tgl_masuk}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement uuid="0acaaa90-19cf-4b18-8a40-2ecb06c1b02b" positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement uuid="382e27a4-b696-433c-9cc9-094a4cef8474" mode="Opaque" x="-21" y="1" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF"/>
+				<textField evaluationTime="Report">
+					<reportElement uuid="2a474e33-2597-4364-b563-cf8e6cda4d9e" style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="67272a3a-75e7-4072-860d-c8609779d4c6" style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="02d167b9-5af5-4549-a8a1-20afc958b840" style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -4,7 +4,19 @@ package Form;
 import Form.Form_Instruktur;
 import Form.Form_Register_Member;
 import Form.Form_Karyawan;
+import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+import transaksi.Form_Absensi;
+import transaksi.Form_Pembayaran;
+import transaksi.Form_Pemilihan_Instruktur;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -46,16 +58,21 @@ public class Home extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jMenuItem4 = new javax.swing.JMenuItem();
         Transaksi = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        pembayaran = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        absensi_member = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        laporan_data_member = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem10 = new javax.swing.JMenuItem();
+        laporan_data_karyawan = new javax.swing.JMenuItem();
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
+        laporan_pembayaran = new javax.swing.JMenuItem();
+        jSeparator8 = new javax.swing.JPopupMenu.Separator();
+        laporan_absensi = new javax.swing.JMenuItem();
+        jSeparator9 = new javax.swing.JPopupMenu.Separator();
+        laporan_data_instruktur = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
 
@@ -92,6 +109,11 @@ public class Home extends javax.swing.JFrame {
         Master.setText("Master");
         Master.setFont(new java.awt.Font("Lato", 1, 18)); // NOI18N
         Master.setMargin(new java.awt.Insets(16, 16, 16, 16));
+        Master.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MasterActionPerformed(evt);
+            }
+        });
 
         register_member.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.META_MASK));
         register_member.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
@@ -143,31 +165,31 @@ public class Home extends javax.swing.JFrame {
         Transaksi.setFont(new java.awt.Font("Lato", 1, 18)); // NOI18N
         Transaksi.setMargin(new java.awt.Insets(16, 16, 16, 16));
 
-        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.META_MASK));
-        jMenuItem5.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
-        jMenuItem5.setText("Booking");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        pembayaran.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.META_MASK));
+        pembayaran.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+        pembayaran.setText("Pembayaran");
+        pembayaran.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                pembayaranActionPerformed(evt);
             }
         });
-        Transaksi.add(jMenuItem5);
+        Transaksi.add(pembayaran);
         Transaksi.add(jSeparator4);
 
-        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.META_MASK));
-        jMenuItem6.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
-        jMenuItem6.setText("Pilih Paket");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        absensi_member.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.META_MASK));
+        absensi_member.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+        absensi_member.setText("Absensi Member");
+        absensi_member.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                absensi_memberActionPerformed(evt);
             }
         });
-        Transaksi.add(jMenuItem6);
+        Transaksi.add(absensi_member);
         Transaksi.add(jSeparator5);
 
         jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.META_MASK));
         jMenuItem7.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
-        jMenuItem7.setText("Absensi");
+        jMenuItem7.setText("Pemilihan Instruktur");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
@@ -182,15 +204,54 @@ public class Home extends javax.swing.JFrame {
         jMenu3.setFont(new java.awt.Font("Lato", 1, 18)); // NOI18N
         jMenu3.setMargin(new java.awt.Insets(16, 16, 16, 16));
 
-        jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.META_MASK));
-        jMenuItem8.setText("Laporan Booking");
-        jMenu3.add(jMenuItem8);
+        laporan_data_member.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.META_MASK));
+        laporan_data_member.setText("Laporan Data Member");
+        laporan_data_member.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                laporan_data_memberActionPerformed(evt);
+            }
+        });
+        jMenu3.add(laporan_data_member);
         jMenu3.add(jSeparator6);
 
-        jMenuItem10.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.META_MASK));
-        jMenuItem10.setText("List Member");
-        jMenu3.add(jMenuItem10);
+        laporan_data_karyawan.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.META_MASK));
+        laporan_data_karyawan.setText("Laporan Data Karyawan");
+        laporan_data_karyawan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                laporan_data_karyawanActionPerformed(evt);
+            }
+        });
+        jMenu3.add(laporan_data_karyawan);
         jMenu3.add(jSeparator7);
+
+        laporan_pembayaran.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.META_MASK));
+        laporan_pembayaran.setText("Laporan Pembayaran");
+        laporan_pembayaran.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                laporan_pembayaranActionPerformed(evt);
+            }
+        });
+        jMenu3.add(laporan_pembayaran);
+        jMenu3.add(jSeparator8);
+
+        laporan_absensi.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.META_MASK));
+        laporan_absensi.setText("Laporan Absensi");
+        laporan_absensi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                laporan_absensiActionPerformed(evt);
+            }
+        });
+        jMenu3.add(laporan_absensi);
+        jMenu3.add(jSeparator9);
+
+        laporan_data_instruktur.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.META_MASK));
+        laporan_data_instruktur.setText("Laporan Data Instruktur");
+        laporan_data_instruktur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                laporan_data_instrukturActionPerformed(evt);
+            }
+        });
+        jMenu3.add(laporan_data_instruktur);
 
         jMenuBar1.add(jMenu3);
 
@@ -243,19 +304,23 @@ public class Home extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
+          new Form_Alat_Gym().setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
+        new Form_Pemilihan_Instruktur().setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void absensi_memberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_absensi_memberActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+        new Form_Absensi().setVisible(true);
+    }//GEN-LAST:event_absensi_memberActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void pembayaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pembayaranActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+        new Form_Pembayaran().setVisible(true);
+    }//GEN-LAST:event_pembayaranActionPerformed
 
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
         // TODO add your handling code here:
@@ -282,6 +347,101 @@ public class Home extends javax.swing.JFrame {
            System.exit(0);
         }
     }//GEN-LAST:event_jMenu5MouseClicked
+
+    private void laporan_data_memberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laporan_data_memberActionPerformed
+        // TODO add your handling code here:
+        try {
+             HashMap parameter = new HashMap();
+             Class.forName("com.mysql.jdbc.Driver");
+             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:8889/gms","root","root");
+             File file = new File("src/report/report_data_member.jasper");
+             JasperReport jr = (JasperReport) JRLoader.loadObject(file);
+             JasperPrint jp = JasperFillManager.fillReport(jr, parameter, conn);
+             JasperViewer.viewReport(jp, false);
+             JasperViewer.setDefaultLookAndFeelDecorated(true);
+        } catch (Exception e) {
+           javax.swing.JOptionPane.showMessageDialog(null,
+                   "Data tidak dapat dicetak !!!"+"\n"+ e.getMessage(), "Cetak Data",
+                   javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_laporan_data_memberActionPerformed
+
+    private void laporan_data_karyawanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laporan_data_karyawanActionPerformed
+        // TODO add your handling code here:
+        try {
+             HashMap parameter = new HashMap();
+             Class.forName("com.mysql.jdbc.Driver");
+             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:8889/gms","root","root");
+             File file = new File("src/report/report_data_karyawan.jasper");
+             JasperReport jr = (JasperReport) JRLoader.loadObject(file);
+             JasperPrint jp = JasperFillManager.fillReport(jr, parameter, conn);
+             JasperViewer.viewReport(jp, false);
+             JasperViewer.setDefaultLookAndFeelDecorated(true);
+        } catch (Exception e) {
+           javax.swing.JOptionPane.showMessageDialog(null,
+                   "Data tidak dapat dicetak !!!"+"\n"+ e.getMessage(), "Cetak Data",
+                   javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_laporan_data_karyawanActionPerformed
+
+    private void laporan_data_instrukturActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laporan_data_instrukturActionPerformed
+        // TODO add your handling code here:
+           try {
+             HashMap parameter = new HashMap();
+             Class.forName("com.mysql.jdbc.Driver");
+             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:8889/gms","root","root");
+             File file = new File("src/report/report_data_karyawan.jasper");
+             JasperReport jr = (JasperReport) JRLoader.loadObject(file);
+             JasperPrint jp = JasperFillManager.fillReport(jr, parameter, conn);
+             JasperViewer.viewReport(jp, false);
+             JasperViewer.setDefaultLookAndFeelDecorated(true);
+        } catch (Exception e) {
+           javax.swing.JOptionPane.showMessageDialog(null,
+                   "Data tidak dapat dicetak !!!"+"\n"+ e.getMessage(), "Cetak Data",
+                   javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_laporan_data_instrukturActionPerformed
+
+    private void laporan_absensiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laporan_absensiActionPerformed
+        // TODO add your handling code here:
+        try {
+             HashMap parameter = new HashMap();
+             Class.forName("com.mysql.jdbc.Driver");
+             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:8889/gms","root","root");
+             File file = new File("src/report/report_data_absensi.jasper");
+             JasperReport jr = (JasperReport) JRLoader.loadObject(file);
+             JasperPrint jp = JasperFillManager.fillReport(jr, parameter, conn);
+             JasperViewer.viewReport(jp, false);
+             JasperViewer.setDefaultLookAndFeelDecorated(true);
+        } catch (Exception e) {
+           javax.swing.JOptionPane.showMessageDialog(null,
+                   "Data tidak dapat dicetak !!!"+"\n"+ e.getMessage(), "Cetak Data",
+                   javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_laporan_absensiActionPerformed
+
+    private void laporan_pembayaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laporan_pembayaranActionPerformed
+        // TODO add your handling code here:
+          try {
+             HashMap parameter = new HashMap();
+             Class.forName("com.mysql.jdbc.Driver");
+             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:8889/gms","root","root");
+             File file = new File("src/report/report_data_pembayaran.jasper");
+             JasperReport jr = (JasperReport) JRLoader.loadObject(file);
+             JasperPrint jp = JasperFillManager.fillReport(jr, parameter, conn);
+             JasperViewer.viewReport(jp, false);
+             JasperViewer.setDefaultLookAndFeelDecorated(true);
+        } catch (Exception e) {
+           javax.swing.JOptionPane.showMessageDialog(null,
+                   "Data tidak dapat dicetak !!!"+"\n"+ e.getMessage(), "Cetak Data",
+                   javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_laporan_pembayaranActionPerformed
+
+    private void MasterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MasterActionPerformed
+        // TODO add your handling code here:
+          new Form_Alat_Gym().setVisible(true);
+    }//GEN-LAST:event_MasterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -321,19 +481,16 @@ public class Home extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Master;
     private javax.swing.JMenu Transaksi;
+    private javax.swing.JMenuItem absensi_member;
     private javax.swing.JMenuItem add_karyawan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
@@ -342,6 +499,14 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JPopupMenu.Separator jSeparator7;
+    private javax.swing.JPopupMenu.Separator jSeparator8;
+    private javax.swing.JPopupMenu.Separator jSeparator9;
+    private javax.swing.JMenuItem laporan_absensi;
+    private javax.swing.JMenuItem laporan_data_instruktur;
+    private javax.swing.JMenuItem laporan_data_karyawan;
+    private javax.swing.JMenuItem laporan_data_member;
+    private javax.swing.JMenuItem laporan_pembayaran;
+    private javax.swing.JMenuItem pembayaran;
     private javax.swing.JMenuItem register_member;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="16430197-5679-4c89-b8f7-0f17414bc675">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     tb_pilih_instruktur.`id_pemilihan` AS tb_pilih_instruktur_id_pemilihan,
+     tb_pilih_instruktur.`nama_instruktur` AS tb_pilih_instruktur_nama_instruktur,
+     tb_pilih_instruktur.`nama_member` AS tb_pilih_instruktur_nama_member,
+     tb_pilih_instruktur.`bidang` AS tb_pilih_instruktur_bidang
+FROM
+     `tb_pilih_instruktur` tb_pilih_instruktur]]>
+	</queryString>
+	<field name="tb_pilih_instruktur_id_pemilihan" class="java.lang.String"/>
+	<field name="tb_pilih_instruktur_nama_instruktur" class="java.lang.String"/>
+	<field name="tb_pilih_instruktur_nama_member" class="java.lang.String"/>
+	<field name="tb_pilih_instruktur_bidang" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="208" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="1cd32e69-7e5c-4202-bed4-281362eb22a5" style="Title" x="270" y="0" width="384" height="62"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[MARK'S GYM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5edaefe7-abc0-467c-8177-1f3665463ca0" style="SubTitle" x="303" y="62" width="196" height="22"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[GEDONG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="64a11620-e54b-4258-aafa-37e54034debd" x="237" y="94" width="383" height="42"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Jl. H. Taiman No. 13 RT/RW 003/009 Kel. Gedong Kec. Pasar Rebo, Jakarta Timur 13760 (samping cahaya gedong residen 1)]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="33028fd5-1b1a-4e7b-91db-ca3c49c37745" x="113" y="0" width="157" height="136"/>
+				<imageExpression><![CDATA["/Users/user/Downloads/mark_gym_logo.jpeg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="a98dcd3f-da2c-4410-b4fc-288e7458dd05" x="198" y="136" width="456" height="35"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LAPORAN PEMILIHAN INSTRUKTUR]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="5b69ad31-8bd2-494d-8697-0c31a9cd8c93" x="220" y="182" width="414" height="1"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement uuid="d9581ba1-be89-40a0-9280-45d91ae38a66" positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="4a9c9f90-6866-44a2-9075-2463b49a9be4" style="Column header" x="0" y="0" width="200" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[ID Pil Instruktur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="65e83b87-aa96-4095-b9a4-6a3cc723eff2" style="Column header" x="200" y="0" width="200" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Nama Instruktur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ec6720ab-21a6-4827-9c19-a625eebbba71" style="Column header" x="400" y="0" width="200" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Nama Member]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bf017de2-61fe-4ebd-9282-f343d1a10a9d" style="Column header" x="600" y="0" width="200" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Bidang]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement uuid="c5608446-f467-43ed-8542-02bbcde9397b" style="Row" mode="Opaque" x="0" y="0" width="802" height="15"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="977c3ac5-dfb4-4cb6-895b-05a939b481e4" style="Detail" x="0" y="0" width="200" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tb_pilih_instruktur_id_pemilihan}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="93fff63c-4c76-45e4-a4b5-ba38a1064559" style="Detail" x="200" y="0" width="200" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tb_pilih_instruktur_nama_instruktur}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="37daf9b5-19e4-4489-9ed4-37693c4cf756" style="Detail" x="400" y="0" width="200" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tb_pilih_instruktur_nama_member}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="e2a7a602-7271-481c-9c61-f536e1e621e2" style="Detail" x="600" y="0" width="200" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tb_pilih_instruktur_bidang}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement uuid="e2e91358-d50d-42d6-a6de-41e3cc8ff634" positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement uuid="076ed86b-0a1e-46ee-b888-0b72c0ccc0a1" mode="Opaque" x="-21" y="1" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF"/>
+				<textField evaluationTime="Report">
+					<reportElement uuid="dd3ac596-ad83-467b-b8d9-cf4443b2e61b" style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="165e4a8f-96dd-48f8-9b9a-5ef3a102e106" style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="76d9a5d7-39ea-4085-b699-937ca859743a" style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
