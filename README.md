@@ -1,7 +1,4 @@
-# sistem-membership-gym
-Ini adalah Project Kuliah Kerja Praktek yang dilaksanakan di Mark's Gym. Disini kami membuat Sistem Membership Gym untuk Manajemen Member, dll.
-
-Sistem Informasi Membership Gym Berbasis Dekstop Menggunakan Netbens & Mysql
+# Sistem Informasi Membership Gym Berbasis Dekstop Menggunakan Netbens & Mysql
 Ini adalah Project Kuliah Kerja Praktek yang dilaksanakan di Mark's Gym. Disini kami membuat Sistem Membership Gym untuk Manajemen Member, dll.
 
 # Featured
@@ -23,7 +20,7 @@ Logout
 
 # Tools
 Netbens 8.2
-MAMPP ( Untuk Server + Database Mysql
+MAMPP ( Untuk Server + Database Mysql )
 
 # Showcase Application
 
